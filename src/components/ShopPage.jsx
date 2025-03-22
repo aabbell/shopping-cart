@@ -1,7 +1,7 @@
 import Card from './card.jsx'
 import '../ShopPage.css'
 import { useEffect, useState } from 'react'
-export default function ShopPage(){
+export default function ShopPage({ onAddToCart }){
     const [products, setProducts] = useState([])
     useEffect(() => {
         async function fetchData(){
@@ -14,24 +14,22 @@ export default function ShopPage(){
             }
         }
         fetchData()
-    }, [])
-
-    useEffect(() => {
-        if (products.length > 0) {
-          products.forEach(product => {
-            console.log(product.title);
-          });
-        }
-      }, [products]);
-    
+    }, [])  
 
     return (
         <div className='products'>
-        {products.map((product) =>(
-            <div className= "cards"key = {product.id}>
-        <Card   title = {product.title} image = {product.image} price = {product.price}/>
+        {products.map((product) =>{ 
+            
+            return(
+                <div className= "cards" key = {product.id}>
+        <Card title = {product.title} image = {product.image} price = {product.price} onAddToCart={ onAddToCart } product={product}/>
             </div>
-        ) )}
+            )
+            
+            
+        
+        })} 
+        
         </div>
     )
 }
