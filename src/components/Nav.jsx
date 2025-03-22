@@ -1,4 +1,4 @@
- import { Link } from "react-router-dom"
+ import { Link , Outlet} from "react-router-dom"
  import '../nav.css'
 
  export default function Nav(){
@@ -15,6 +15,7 @@
                 <Link className="nav-link"to= "/ShopPage">Shop</Link>
             </li>
           </ul>
+          <Outlet/>
         </nav >
     )
  }
